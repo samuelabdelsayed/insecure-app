@@ -1,3 +1,5 @@
+package hello;
+
 class HelloWorld
 {
   string username = "silly";
