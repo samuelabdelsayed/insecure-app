@@ -14,7 +14,7 @@ class HelloWorld
       Statement stmt = conn.createStatement();
       ResultSet rs;
  
-      rs = stmt.executeQuery("SELECT Lname FROM Client WHERE Uname = '" + user = "'");
+      rs = stmt.executeQuery("SELECT Lname FROM Client WHERE Uname = '" + user + "'");
       while ( rs.next() ) 
       {
         String person = rs.getString("Uname");
