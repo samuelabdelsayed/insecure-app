@@ -10,9 +10,8 @@ class HelloWorld
   public static void main(String[] args) 
   {
     String username = "silly";
-    String password = "insecure_password_123";
-
     String password = "insecure_password";
+    
     insecure(username, password);
   }
 }
