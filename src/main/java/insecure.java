@@ -1,12 +1,13 @@
-package hello;
+package application;
 
+import javax.swing.JOptionPane;
 import java.sql.*;
 
-class HelloWorld 
+class insecure
 {
-  static void insecure(String user, String pass) 
+  static void show(String user, String pass) 
   {
-    System.out.println("Here is my " + user + " " + pass + "!" );
+    JOptionPane.showMessageDialog(null, "Here is my " + user + " " + pass + "!", JOptionPane.PLAIN_MESSAGE );
     try 
     {
       String url = "jdbc:msql://12.34.56.78:910/App";
@@ -32,7 +33,13 @@ class HelloWorld
   {
     String username = "silly";
     String password = "insecure_password";
-    
-    insecure(username, password);
+		
+		username = JOptionPane.showInputDialog("username");
+		user = String.parseString(username);
+
+    password = JOptionPane.showInputDialog("password");
+		pass = String.parseString(password);
+		
+    show(user, pass);
   }
 }
