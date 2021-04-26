@@ -1,10 +1,11 @@
-package hello;
+package application;
 
+import javax.swing.JOptionPane;
 import java.sql.*;
 
-class HelloWorld 
+class insecure
 {
-  static void insecure(String user, String pass) 
+  static void show(String user, String pass) 
   {
     System.out.println("Here is my " + user + " " + pass + "!" );
     try 
@@ -28,11 +29,17 @@ class HelloWorld
           System.err.println(e.getMessage());
      }
   } 
-  public static void main(String[] args) 
+  public static void main(String[] args)
   {
-    String username = "silly";
-    String password = "insecure_password";
-    
-    insecure(username, password);
+    String username, user;
+    String password, pass;
+
+	  username = JOptionPane.showInputDialog("username");
+	  user = String.parseString(username);
+
+    password = JOptionPane.showInputDialog("password");
+	  pass = String.parseString(password);
+
+    show(user, pass);
   }
 }
