@@ -47,7 +47,6 @@ public class Login extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		String user = userName_text.getText();
-		String pass = password_text.getText();
 
 		try {
 			String url = "jdbc:msql://12.34.56.78:910/App";
