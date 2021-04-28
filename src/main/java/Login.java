@@ -3,8 +3,6 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.sql.*;
 
-// This is the generic login class
-
 public class Login extends JFrame implements ActionListener {
 	JPanel panel;
 	JLabel user_label, password_label, message;
