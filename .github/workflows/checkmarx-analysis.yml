@@ -22,7 +22,7 @@ jobs:
         scanners: sast
         bug_tracker: GITHUBPULL
         #bug_tracker: Sarif
-        params: --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.head_ref }} --merge-id=${{ github.event.number }}
+        params: --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.head_ref }} --merge-id=${{ github.event.number }} --cx-flow.filter-severity=High --cx-flow.filter-severity=Medium --cx-flow.filter-severity=Low
         
    # - name: Upload SARIF file
    #   uses: github/codeql-action/upload-sarif@v1
