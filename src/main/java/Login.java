@@ -3,16 +3,16 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.sql.*;
 
-public class Login extends JFrame implements ActionListener 
-{
+// This is the generic login class
+
+public class Login extends JFrame implements ActionListener {
 	JPanel panel;
 	JLabel user_label, password_label, message;
 	JTextField userName_text;
 	JPasswordField password_text;
 	JButton submit, cancel;
 
-	Login() 
-	{
+	Login() {
 		user_label = new JLabel();
 		user_label.setText("User Name :");
 		userName_text = new JTextField();
@@ -36,35 +36,32 @@ public class Login extends JFrame implements ActionListener
 		submit.addActionListener(this);
 		add(panel, BorderLayout.CENTER);
 		setTitle("Please login here");
-		setSize(450,350);
+		setSize(450, 350);
 		setVisible(true);
 	}
+
 	public static void main(String[] args) {
 		new Login();
 	}
+
 	@Override
-	public void actionPerformed(ActionEvent ae) 
-	{
+	public void actionPerformed(ActionEvent ae) {
 		String user = userName_text.getText();
 		String pass = password_text.getText();
- 
-		try 
-		{
+
+		try {
 			String url = "jdbc:msql://12.34.56.78:910/App";
-			Connection conn = DriverManager.getConnection(url,"","");
+			Connection conn = DriverManager.getConnection(url, "", "");
 			Statement stmt = conn.createStatement();
 			ResultSet rs;
- 
+
 			rs = stmt.executeQuery("SELECT Lname FROM Client WHERE Uname = '" + user + "'");
-			while ( rs.next() ) 
-			{
+			while (rs.next()) {
 				String person = rs.getString("Uname");
 				System.out.println(person);
 			}
 			conn.close();
-		} 
-		catch (Exception e) 
-		{
+		} catch (Exception e) {
 			System.err.println("Got an exception! ");
 			System.err.println(e.getMessage());
 		}
