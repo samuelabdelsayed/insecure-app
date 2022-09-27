@@ -21,7 +21,7 @@ assignees: ''
 - TBA
 
 ### 👤 Team Host Rotation
-- @samuelabdelsayed
+- TBA
 
 ### 🔗 Links
 - TBA
