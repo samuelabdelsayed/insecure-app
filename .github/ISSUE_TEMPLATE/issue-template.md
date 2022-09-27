@@ -15,7 +15,7 @@ assignees: ''
 - [ ] ...
 
 ### 🌴  Away
-- @userHandler
+- TBA
 
 ### 🧑🏽‍🤝‍🧑🏽  Attendees
 - TBA
