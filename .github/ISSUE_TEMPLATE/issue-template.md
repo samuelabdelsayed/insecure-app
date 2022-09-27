@@ -1,8 +1,8 @@
 ---
 name: Meeting Agenda Issue Template
-about: 'Template to capture Meeting Agenda'
+about: Template to capture Meeting Agenda
 title: Meeting Week {{ .WeekNumber }} (Week of {{ .WeekStartDate }})
-labels: 
+labels: ''
 assignees: ''
 
 ---
