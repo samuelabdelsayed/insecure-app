@@ -32,7 +32,7 @@ jobs:
         cx_tenant: ${{ secrets.CHECKMARX_TENANT }}
         cx_client_id: ${{ secrets.CHECKMARX_CLIENT_ID }}
         cx_client_secret: ${{ secrets.CHECKMARX_CLIENT_SECRET }}
-        additional_params: --threshold 'sast-high=1;sast-medium=5;sast-low=15' --filter-severity HIGH,MEDIUM,LOW --scan-types sast
+        additional_params: --threshold 'sast-high=1;sast-medium=5;sast-low=15' --scan-types sast
         github_token: ${{ github.token }}
         repo_name: ${{ github.event.repository.name }}
         branch: ${{ github.ref }}
