@@ -1,33 +1,43 @@
-name: CxFlow
+name: Checkmarx SAST Scan
 
 on:
-  pull_request:
-    branches: [ main ]
   push:
     branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '0 3 * * 5'  # Weekly at 3:00 AM UTC on Fridays
+
+permissions:
+  contents: read
+  security-events: write
+  pull-requests: read
 
 jobs:
-  build:
+  scan:
+    name: Checkmarx CxSAST Scan
     runs-on: ubuntu-latest
+    
     steps:
-    - uses: actions/checkout@v2
-    - name: Checkmarx CxFlow Action
-      uses: checkmarx-ts/checkmarx-cxflow-github-action@v1.1
+    - name: Checkout repository
+      uses: actions/checkout@v3
       with:
-        project: 'Insecure Java Application'
-        team: /CxServer/SP/APAC/Boaz
-        checkmarx_url: ${{ secrets.CHECKMARX_URL }}
-        checkmarx_username: ${{ secrets.CHECKMARX_USERNAME }}
-        checkmarx_password: ${{ secrets.CHECKMARX_PASSWORD }}
-        checkmarx_client_secret: ${{ secrets.CHECKMARX_CLIENT_SECRET }}
-        incremental: false
+        fetch-depth: 0  # Fetch all history for better scan accuracy
+    
+    - name: Checkmarx CxSAST Scan
+      uses: checkmarx/ast-github-action@v2.0.15  # Using the latest AST action
+      with:
+        project_name: 'Insecure E-Commerce App'
+        cx_tenant: ${{ secrets.CHECKMARX_TENANT }}
+        cx_client_id: ${{ secrets.CHECKMARX_CLIENT_ID }}
+        cx_client_secret: ${{ secrets.CHECKMARX_CLIENT_SECRET }}
+        additional_params: --threshold 'sast-high=1;sast-medium=5;sast-low=15' --repo-name ${{ github.event.repository.name }} --branch ${{ github.ref }} --filter-severity HIGH,MEDIUM,LOW
+        threshold: false
         scanners: sast
-        #option for GitHub issues or Security tab results
-        #bug_tracker: GITHUBPULL
-        bug_tracker: Sarif
-        params: --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.head_ref }} --merge-id=${{ github.event.number }} --cx-flow.filter-severity=High --cx-flow.filter-severity=Medium --cx-flow.filter-severity=Low
+        sast_preset_name: 'Checkmarx Default'
+        github_token: ${{ github.token }}
         
     - name: Upload SARIF file
-      uses: github/codeql-action/upload-sarif@v1
+      uses: github/codeql-action/upload-sarif@v2
       with:
         sarif_file: cx.sarif
