@@ -1,0 +1,21 @@
+version: 2
+updates:
+  # Configuration for Maven
+  - package-ecosystem: "maven"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    # Since this is a deliberately insecure app for testing SAST tools,
+    # we want to limit automatic updates
+    open-pull-requests-limit: 0
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-patch", "version-update:semver-minor"]
+    
+  # Configuration for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    # Allow up to 5 open pull requests for GitHub Actions
+    open-pull-requests-limit: 5
