@@ -26,7 +26,7 @@ jobs:
         fetch-depth: 0  # Fetch all history for better scan accuracy
     
     - name: Checkmarx CxSAST Scan
-      uses: checkmarx/ast-github-action@v2.0.15  # Using the latest AST action
+      uses: checkmarx/ast-github-action@2.3.26  # Updated to latest version (without 'v' prefix)
       with:
         project_name: 'Insecure E-Commerce App'
         cx_tenant: ${{ secrets.CHECKMARX_TENANT }}
